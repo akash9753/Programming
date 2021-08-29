@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="w">Welcome </h1>
+    <div>
+        first Name : <input id = "fn" type="text" placeholder="enter your first name">
+    </div>
+
+    <div>
+       Last Name : <input id = "ln" type="text" placeholder="enter your last name">
+    </div>
+
+    <div>
+        Email : <input id = "eml" type="email" placeholder="enter your email">
+    </div>
+
+    <div>
+        Mobile : <input id = "mo" type="tel" placeholder="enter your mobile">
+    </div>
+    
+    <div id="print"></div>
+
+    <button onclick="greetUser()">greet user</button>
+
+    <script>
+       function greetUser(){
+           
+           `firstname =  ${document.getElementById("fn").value}`,
+           `lasttname =  ${document.getElementById("ln").value}`,
+           `email =  ${document.getElementById("eml").value}`,
+           `mobile no =  ${document.getElementById("mo").value}`
+
+           const h1 = document.getElementById("w")
+           h1.innerHTML = "Welcome " + document.getElementById("fn").value + " " + document.getElementById("ln").value
+           
+           
+           document.getElementById("print").innerHTML += `
+            FirstName :${document.getElementById("fn").value}  <br>
+            LastName : ${document.getElementById("ln").value } <br>
+            Email :  ${document.getElementById("eml").value }  <br>
+            Mobile No :  ${document.getElementById("mo").value} <br> `
+           
+           
+            
+           
+       }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+</head>
+<body>  
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6" style="background: aqua;">
+                <div class="form-group">
+                    <label for="">First Name</label>
+                    <input type="text" class="form-control" id="first-name">
+                 </div>
+         
+                 <div class="form-group">
+                     <label for="">Last Name</label>
+                     <input type="text" class="form-control" id="last-name">
+                  </div>
+         
+                  <div class="form-group">
+                     <label for="">Email</label>
+                     <input type="email" class="form-control" id="email">
+                  </div>
+         
+                  <div class="form-group">
+                     <label for="">Mobile No</label>
+                     <input type="tel" class="form-control" id="mobile">
+                  </div>
+                  
+                  <div class="form-group">
+                       <button onclick="reg()"class="btn btn-success " >Register</button>
+                       <button class="btn btn-danger">Cancel</button>
+                 </div>
+            
+            </div>
+            
+    
+            
+    
+            <div class="col-md-6" style="background: beige;">
+            <div id="result"></div>
+            </div>
+
+        </div>
+        
+        
+        
+     </div>
+
+    <script src="jquery-3.6.0.min.js"></script>
+
+    <script>
+        function reg(){
+        $('#result').html(`
+           FirstName: ${$('#first-name').val()}
+           Lastname:${$('#last-name').val()}
+           Email:${$('#email').val()}
+           Mobile:${$('#mobile').val()}
+           `)
+        }
+    </script>
+    
+</body>
+</html>

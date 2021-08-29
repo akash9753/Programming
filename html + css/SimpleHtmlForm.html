@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Registration Form</h1>
+
+    <form action="">
+
+    <table>
+      <tbody>
+          <tr>
+              <td><label for="fn">Full Name :</label></td>
+              <td><input required placeholder="Enter your Fullname" id="fn" type="text"></td>
+          </tr>
+
+          <tr>
+            <td><label for="bd">Birth Date :</label></td>
+              <td><input required id="bd" type="date"></td>
+                
+          </tr>
+
+          <tr>
+            <td><label for="bt">Birth Time :</label></td>
+              <td><input required id="bt" type="time"></td>
+          </tr>
+
+          <tr>
+            <td><label for="age">Age :</label></td>
+              <td><input readonly required placeholder="Enter your age" id="age" type="number"></td>
+          </tr>
+
+          <tr>
+            <td><label for="add">Address :</label></td>
+              <td><textarea maxlength="100" required placeholder="Enter your Address" id="add" name=""  cols="30" rows="5"></textarea></td>
+          </tr>
+
+          <tr>
+              <td>City</td>
+              <td>
+                  <select name="" id="city">
+                       <option value="1">Jabalpur</option>
+                       <option selected value="2">Indore</option>
+                       <option value="3">Bhopal</option>
+                       <option value="4">Gwalior</option>
+                  </select>
+              </td>
+          </tr>
+
+
+          <tr>
+            <td>Favorite language :</td>
+              <td><input  name="lang" id="m"type="checkbox">
+                  <label for="lang">C++</label>
+                  <input name="lang" id="fe" type="checkbox">
+                  <label for="lang">Java</label>
+                  <input checked name="lang" id="fe" type="checkbox">
+                  <label for="lang">JavaScript</label>
+             </td>
+          </tr>
+
+          <tr>
+            <td>Gender :</td>
+              <td><input checked name="gender" id="m"type="radio">
+                  <label for="m">Male</label>
+                  <input name="gender" id="fe" type="radio">
+                  <label for="fe">Female</label>
+             </td>
+          </tr>
+
+          <tr>
+              <td>Resume</td>
+              <td>
+                  <input accept="application/pdf" type="file">
+              </td>
+          </tr>
+
+
+          <tr>
+            <td></td>
+            <td>
+                <input type="Submit" value="Register">
+                <input type="reset" value="clear">
+            </td>
+          </tr>
+
+
+      </tbody>
+
+
+
+    </table>
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to Html+JS</h1>
+    <h2>Message</h2>
+
+    <button onclick="p()">Click me</button>
+
+    <script>
+        function p(){
+            console.log(document)
+
+          const arrayH1 =   document.getElementsByTagName('h1')
+          console.log(arrayH1)
+
+          const h1Hello = arrayH1[0]
+          console.log(h1Hello)
+
+          h1Hello.innerHTML = "akash"
+          
+
+
+          const arrayH2 = document.getElementsByTagName('h2')
+
+          const h2Hello = arrayH2[0]
+          console.log(h2Hello)
+
+          h2Hello.innerHTML = "message gets changed"
+        }
+
+
+    </script>
+</body>
+</html>
