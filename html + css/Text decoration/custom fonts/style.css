@@ -1,0 +1,16 @@
+@font-face {
+        font-family: my-header-font;
+        src: url('header.otf');
+       
+      }
+h1{
+    font-family: my-header-font;
+    text-shadow: 5px 5px 10px #737373;
+}
+
+  div{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+  }
