@@ -1,0 +1,6 @@
+const page1 = require('./export_module')
+console.log(page1)
+page1.add(40,50)
+page1.division(50,5)
+page1.substraction(-5,-9)
+page1.multiply(10,7)

@@ -1,0 +1,6 @@
+const page1 = require('./function_variable_object_constant')
+console.log(`Persons = `)
+console.log(page1.persons)
+page1.myfunction()
+console.log(`num = ${page1.num}`)
+console.log(`num = ${page1.salary}`)
