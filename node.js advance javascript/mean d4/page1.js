@@ -1,65 +1,15 @@
-const fs = require('fs')
+//step 1 : get the http module
+const http = require('http')
 
-function syncReadfile(){
-    //reading the file
-    console.log(`file reading started`)
-    //blocking call/API
-    const data = fs.readFileSync('./page1.txt')
-    console.log(`file reading finished`)
-    console.log(`data = ${data}`)
-    console.log(`bye bye`)
-    
-    //mathemetical calculation
-    console.log(`performing multiplucation`)
-    const result = 257894321 * 874593521
-    console.log(result)
-}
-//syncReadfile()
+//step 2 : create a http server
+const server = http.createServer((request, response) =>{
+   console.log('a request recieved')
 
-function asyncReadfile(){
-    console.log(`file reading started`)
-    
-    //starts a thread to perform the read operation
-    fs.readFile('./page1.txt',(error,data)=>{
-    //the reading is finished
-    console.log(`file reading finished`)
-    console.log(`data = ${data}`)
-    console.log(`bye bye`)
-    })
-    
-     
-}
-//asyncReadfile()
+   //send the response
+   response.end("hello from server")
+})
 
-function function1(){
-    console.log('download started')
-    setTimeout(()=>{
-        console.log('download finished')
-    },5000)
-
-    //mathemetical calculation
-    console.log(`performing multiplucation`)
-    const result = 257894321 * 874593521
-    console.log(result)
-}
-//function1()
-
-function myReadFile(path, func){
-    // func = (error,data) => {...}
-    const data = fs.readFileSync(path)
-    setTimeout(()=>{
-        func(null, data)
-    },1000)
-}
-function function2(){
-    console.log('reading started')
-    myReadFile('./page1.txt',(error,data)=>{
-          console.log(`data = ${data}`)
-          console.log('reading finished')
-    })
-    //mathemetical calculation
-    console.log(`performing multiplucation`)
-    const result = 257894321 * 874593521
-    console.log(result)
-}
-function2()
+//step 3 : start the server
+server.listen(4000,'0.0.0.0', ()=>{
+    console.log(`server started susseccfully`)
+})
