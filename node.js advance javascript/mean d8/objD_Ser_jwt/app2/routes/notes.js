@@ -2,6 +2,7 @@ const express = require('express')
 
 const db = require('../db')
 const utils = require('../utils')
+const jwt = require('jsonwebtoken')
 const urlMethod = require('../urlAndMethod')
 
  const router = express.Router()
@@ -12,22 +13,26 @@ const urlMethod = require('../urlAndMethod')
     db.query(statements,(error, dbResult)=>{
       response.send(utils.createResult(error,dbResult))
     })
-        
- })
+  })
 
- router.get('/getNotebyUserId/:userId',(request,response)=>{
+ router.get('/getNotebyUserId',(request,response)=>{
     console.log(urlMethod.urlAndMethod(request))
-    const { userId} = request.params
-    const statements = `select * from note where userId = ${userId} `
-    db.query(statements,(error, dbResult)=>{
-      response.send(utils.createResult(error,dbResult))
-    })
-        
- })
+    const token = request.headers['token']
+    console.log(token)
+    try{
+      const data = jwt.verify(token,'123456789')
+      const statement = `select * from note where userId = ${data.id}`
+      db.query(statement,(error, dbResult)=>{
+        response.send(utils.createResult(error,dbResult))
+      })
+    }catch(ex){
+     response.status(401)
+     response.send('u r not allowed to access this API')
+    }
+  })
 
- router.get('/getNotebyNoteId/:noteId',(request,response)=>{
+ router.get('/getNotebyNoteId',(request,response)=>{
     console.log(urlMethod.urlAndMethod(request))
-    const { noteId} = request.params
     const statements = `select * from note where noteId = ${noteId}`
     db.query(statements,(error, dbResult)=>{
       response.send(utils.createResult(error,dbResult))
