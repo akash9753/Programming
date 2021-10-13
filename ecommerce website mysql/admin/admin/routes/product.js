@@ -1,7 +1,11 @@
 const express = require('express')
-const utils = require('../utils')
-const db = require('../db')
-const config = require('../config')
+const utils = require('../../utils')
+const db = require('../../db')
+const config = require('../../config')
+const crypto = require('crypto-js')
+const urlMethod = require('../../urlMethod')
+const jwt = require('jsonwebtoken')
+
 const router = express.Router()
 
 
