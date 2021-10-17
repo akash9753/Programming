@@ -19,9 +19,52 @@ router.get('/profile', (request, response)=>{
           })
         })
     
+router.get('/getAllAdminProfile', (request, response)=>{
+            console.log(urlMethod.urlMethod(request))
+            const statement = `select firstName, lastName, email, mobile, gender, dateOfBirth,address,city,zip,
+            state,country,createdOn from admin`
+            db.query(statement, (error, data)=>{
+            response.send(utils.createResult(error,data))    
+            })
+        })    
 /*----------------------------------------------*/
 
 //POST
+
+
+/**
+ * @swagger
+ * /admin/signup:
+ *   post:
+ *     description: for signing up an adminastrator.
+ *     produces:
+ *        - application/json
+ *     parameters :
+ *        - name : firstName
+ *          decription : firstName of user
+ *          in : formData
+ *          required : true
+ *          type : string
+ *        - name : lastName
+ *          decription : lastName of user
+ *          in : formData
+ *          required : true
+ *          type : string 
+ *        - name : password
+ *          decription : password of user
+ *          in : formData
+ *          required : true
+ *          type : string 
+ *        - name : email
+ *          decription : email for adminuser used fro authentcation
+ *          in : formData
+ *          required : true
+ *          type : string 
+ *     responses :
+ *      200 : 
+ *       description : successful message
+ * 
+ */   
 router.post('/signup', (request, response)=>{
       console.log(urlMethod.urlMethod(request))
       const {firstName, lastName, email, password, mobile, gender, dateOfBirth,address,city,zip,state,country} = request.body
@@ -34,6 +77,30 @@ router.post('/signup', (request, response)=>{
       })
 })
 /*----------------------------------------------*/
+/**
+ * @swagger
+ * /admin/signin:
+ *   get:
+ *     description: for signing up an adminastrator.
+ *     produces:
+ *        - application/json
+ *     parameters :
+ *        
+ *        - name : password
+ *          decription : password of user
+ *          in : formData
+ *          required : true
+ *          type : string 
+ *        - name : email
+ *          decription : email for adminuser used fro authentcation
+ *          in : formData
+ *          required : true
+ *          type : string 
+ *     responses :
+ *      200 : 
+ *       description : successful message
+ * 
+ */  
 router.post('/signin', (request, response)=>{
     try{
     console.log(urlMethod.urlMethod(request))

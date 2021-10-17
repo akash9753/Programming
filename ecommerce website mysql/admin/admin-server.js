@@ -2,6 +2,8 @@ const express = require('express')
 const morgan = require('morgan')
 const jwt = require('jsonwebtoken')
 const config = require('./config')
+const swaggerJSDoc = require('swagger-jsdoc')
+const swaggerUi = require('swagger-ui-express')
 
 const adminRouter = require('./admin/routes/admin') 
 const brandRouter = require('./admin/routes/brand') 
@@ -12,7 +14,22 @@ const reviewRouter = require('./admin/routes/review')
 
 const app = express()
 app.use(express.json())
-//app.use(morgan('combined'))
+app.use(morgan('combined'))
+
+//swagger init
+const swaggerOptions = {
+    swaggerDefinition:{
+        info:{
+            title:'Amazon Server',
+            version:'1.0.0',
+            description:'this is amazon server'
+        },
+    },
+    apis:['./admin/routes/*.js']
+}
+
+const swaggerSpec = swaggerJSDoc(swaggerOptions)
+app.use('/api-docs' , swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 
 //add a middleware for getting the id from token
@@ -32,10 +49,9 @@ function getAdminId(request,response,next){
         const data = jwt.verify(token, config.secret) 
         console.log(`getAdminId config.secret : ${config.secret}`)
         console.log(`getAdminId data.adminId : ${data.adminId}`)
-        console.log('------------------------------------------------- ')
         // add a new key named userId with logged in user's id
         request.adminId = data['adminId']
-
+        console.log('------------------------------------------------- ')
         //go to actual route
         next()
       }catch(ex){
