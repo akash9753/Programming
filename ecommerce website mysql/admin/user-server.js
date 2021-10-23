@@ -5,7 +5,7 @@ const config = require('./config')
 const swaggerJSDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 
-//const userRouter = require('./user/routes/user') 
+const userRouter = require('./user/routes/user') 
 
 
 const app = express()
@@ -35,7 +35,13 @@ function getUserId(request,response,next){
     console.log('------------------------------------------------- ')
     console.log(`URL : ${request.url}`)
     console.log(`METHOD : ${request.method}`)
-    if(request.url == '/user/signin' || request.url == '/user/signup'){
+    
+    if(request.url == '/user/signin' || 
+    request.url == '/user/signup'  ||
+    request.url.startsWith('/user/activate')||
+    request.url == '/'||
+    request.url == '/favicon.ico'||
+    request.url == '/logo.png'){
         //do not check for token
         next()
     }else{
@@ -58,9 +64,11 @@ function getUserId(request,response,next){
 }
 app.use(getUserId)
 
+//required to send the static files in directory named images
+app.use(express.static('images/'))
 
-//app.use('/user',userRouter)
-
+//default router
+app.use('/user',userRouter)
 
 //default route
 app.get('/',(request,response)=>{
