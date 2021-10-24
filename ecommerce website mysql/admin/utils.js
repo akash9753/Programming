@@ -26,8 +26,16 @@ function createError(error){
 
    return result
 }
+function generateOTP(){
+   const min = 10000
+   const max = 99999
+   return Math.floor(Math.random() * (max - min) + min)
+}
+
+
 module.exports = {
     createResult : createResult,
     createError : createError,
-    createSuccess:createSuccess
+    createSuccess:createSuccess,
+    generateOTP : generateOTP
 }

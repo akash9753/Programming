@@ -6,7 +6,7 @@ const swaggerJSDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 
 const userRouter = require('./user/routes/user') 
-
+const orderRouter = require('./user/routes/order')
 
 const app = express()
 app.use(express.json())
@@ -41,6 +41,7 @@ function getUserId(request,response,next){
     request.url.startsWith('/user/activate')||
     request.url == '/'||
     request.url == '/favicon.ico'||
+    request.url.startsWith('/user/forget-password')||
     request.url == '/logo.png'){
         //do not check for token
         next()
@@ -52,7 +53,7 @@ function getUserId(request,response,next){
         console.log(`getUserId config.secret : ${config.secret}`)
         console.log(`getUserId data.userId : ${data.userId}`)
         // add a new key named userId with logged in user's id
-        request.adminId = data['userId']
+        request.userId = data['userId']
         console.log('------------------------------------------------- ')
         //go to actual route
         next()
@@ -69,6 +70,7 @@ app.use(express.static('images/'))
 
 //default router
 app.use('/user',userRouter)
+app.use('/user',orderRouter)
 
 //default route
 app.get('/',(request,response)=>{
