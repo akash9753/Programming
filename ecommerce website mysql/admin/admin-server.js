@@ -4,6 +4,11 @@ const jwt = require('jsonwebtoken')
 const config = require('./config')
 const swaggerJSDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
+const cors = require('cors')
+
+ 
+
+
 
 const adminRouter = require('./admin/routes/admin') 
 const brandRouter = require('./admin/routes/brand') 
@@ -11,6 +16,7 @@ const categoryRouter = require('./admin/routes/category')
 const orderRouter = require('./admin/routes/order') 
 const productRouter = require('./admin/routes/product') 
 const reviewRouter = require('./admin/routes/review') 
+const userListRouter = require('./admin/routes/userList') 
 
 const app = express()
 app.use(express.json())
@@ -30,7 +36,7 @@ const swaggerOptions = {
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions)
 app.use('/api-docs' , swaggerUi.serve, swaggerUi.setup(swaggerSpec))
-
+app.use(cors())
 
 //add a middleware for getting the id from token
 function getAdminId(request,response,next){
@@ -39,7 +45,9 @@ function getAdminId(request,response,next){
     console.log('------------------------------------------------- ')
     console.log(`URL : ${request.url}`)
     console.log(`METHOD : ${request.method}`)
-    if(request.url == '/admin/signin' || request.url == '/admin/signup'){
+    if(request.url == '/admin/signin' 
+    || request.url == '/admin/signup'
+    ||request.url.startsWith('/product/image')){
         //do not check for token
         next()
     }else{
@@ -49,7 +57,7 @@ function getAdminId(request,response,next){
         const data = jwt.verify(token, config.secret) 
         console.log(`getAdminId config.secret : ${config.secret}`)
         console.log(`getAdminId data.adminId : ${data.adminId}`)
-        // add a new key named userId with logged in user's id
+        // add a new key named adminId with logged in user's id
         request.adminId = data['adminId']
         console.log('------------------------------------------------- ')
         //go to actual route
@@ -69,6 +77,7 @@ app.use('/category',categoryRouter)
 app.use('/order',orderRouter)
 app.use('/product',productRouter)
 app.use('/review',reviewRouter)
+app.use('/admin',userListRouter)
 
 //default route
 app.get('/',(request,response)=>{

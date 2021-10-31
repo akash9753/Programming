@@ -7,13 +7,22 @@ const urlMethod = require('../../urlMethod')
 const jwt = require('jsonwebtoken')
 const multer = require('multer')
 const upload = multer({dest: 'images/'})
-
+const fs = require('fs')
 const router = express.Router()
 
 
 //GET
+router.get('/image/:filename',(request,response)=>{
+         const{filename} = request.params
+         const file = fs.readFileSync(__dirname + '/../../images/' + filename)
+         response.send(file)
+})
+
+
+
+
 router.get('/getAllProduct', (request, response)=>{
-    const statement = `select p.productId, p.title, p.description, 
+    const statement = `select p.productId, p.title, p.description, p.image,
     c.categoryId as categoryId, c.title as categoryTitle,
     b.brandId as brandId, b.title as brandTitle,
     p.price, p.image, p.isActive from product p
@@ -46,10 +55,12 @@ router.get('/getAllProduct', (request, response)=>{
                 brand :{
                     id:tempProduct['brandId'],
                     title:tempProduct['brandTitle'],
-                }
+                },
+                image:tempProduct['image'],
             }
             products.push(product)
         }
+        console.log(products)
         response.send(utils.createSuccess(products))
         }
     })

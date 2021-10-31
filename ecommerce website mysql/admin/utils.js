@@ -14,15 +14,15 @@ function createResult(error, data){
 }
 function createSuccess(data){
    const result = {}
-   result ['----STATUS---'] = 'success'
-   result['-----SUCCESS----'] = data
+   result ['status'] = 'success'
+   result['data'] = data
 
    return result
 }
 function createError(error){
    const result = {}
-   result ['----STATUS---'] = 'error'
-   result['-----ERROR----'] = error
+   result ['status'] = 'error'
+   result['error'] = error
 
    return result
 }

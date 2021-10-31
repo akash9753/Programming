@@ -1,0 +1,158 @@
+
+<style>
+  body {
+    background-image: url('assets/backg2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 1;
+  }
+  </style>
+  <body>
+    
+  
+<h2 class="container">Profile</h2>
+<div class="container" style="background-color:linen; opacity: 0.8; box-shadow: 0 1px 2px 0 rgba(0, 0,0, .2); border-color:lightcoral; border-radius: 10px;border-width: 5px; border-style: solid;"  >
+  <div class="row">
+    
+    <div class="col-md-6">
+        <div class="form">
+            
+            <div class="form-group">
+              <label for="">First Name</label>
+              <input [(ngModel)]="firstName" type="text" class="form-control" required placeholder="Enter your First Name" />
+            </div>
+    
+            <div class="form-group">
+              <label for="">Last Name</label>
+              <input [(ngModel)]="lastName" type="text" class="form-control" />
+            </div>
+    
+            <div class="form-group">
+              <label for="">Email</label>
+              <input [(ngModel)]="email" type="email" class="form-control" />
+            </div>
+    
+            <div class="form-group">
+              <label for="">mobile</label>
+              <input [(ngModel)]="mobile" type="text" class="form-control" />
+            </div>
+    
+            <div class="form-group">
+              <label for="">Password</label>
+              <input [(ngModel)]="password" type="password" class="form-control" />
+            </div>
+             
+             <div>
+                 <div>Favorite Language :</div>
+                 
+                <input [(ngModel)]="lang" name="lang" id="m" type="checkbox" />
+                <label for="lang">C++</label>
+                <input [(ngModel)]="lang" name="lang" id="fe" type="checkbox" />
+                <label for="lang">Java</label>
+                <input [(ngModel)]="lang" checked name="lang" id="fe" type="checkbox" />
+                <label for="lang">JavaScript</label>
+             </div>
+
+             <div>Resume</div>
+         <div><input accept="application/pdf" type="file" /></div>
+
+         <div class="form-group">
+            <label for="">Gender :</label>
+            <div class="form-check">
+              <input
+                [(ngModel)]="gender"
+                checked
+                name="gender"
+                id="m"
+                type="radio"
+              />
+              <label for="male">Male</label>
+            </div>
+            <div class="form-check">
+              <input [(ngModel)]="address" name="gender" id="fe" type="radio" />
+              <label for="female">Female</label>
+            </div>
+          </div>
+        </div>
+    </div>
+        
+    
+    
+    
+    <div class="col-md-6">
+      <div class="form-group">
+          <label for="">Birth Date</label>
+          <input [(ngModel)]="dateOfBirth" type="date" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="">Age</label>
+          <input [(ngModel)]="age" type="number" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="">Address</label>
+          <textarea [(ngModel)]="address" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="">City</label>
+          <input [(ngModel)]="city" type="text" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="">Zip</label>
+          <input [(ngModel)]="zip" type="text" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="">State</label>
+          <input [(ngModel)]="state" type="text" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="">Country</label>
+          <input [(ngModel)]="country" type="text" class="form-control" />
+        </div>
+
+        <div class="form-group" style="margin-top: 40px;">
+          <button (click)="onSave()" class="btn btn-success">
+            Save
+          </button>
+
+          
+    
+    
+      </div>
+  </div>
+</div>
+</div>
+
+<p>Firstname : {{firstName}}</p>
+<br>
+<p>LastName : {{lastName}}</p>
+<br>
+<p>Email ID : {{email}}</p>
+<br>
+<p>Mobile : {{mobile}}</p>
+<br>
+<p>Language : {{lang}}</p>
+<br>
+<p>Grnder : {{gender}}</p>
+<br>
+<p>Date Of Birth : {{dateOfBirth}}</p>
+<br>
+<p>Age : {{age}}</p>
+<br>
+<p>Address : {{address}}</p>
+<br>
+<p>City : {{city}}</p>
+<br>
+<p>Zip : {{zip}}</p>
+<br>
+<p>State : {{state}}</p>
+<br>
+<p>Country : {{country}}</p>
+<button class="btn btn-success"  (click)= "change()">change</button>
+</body>
