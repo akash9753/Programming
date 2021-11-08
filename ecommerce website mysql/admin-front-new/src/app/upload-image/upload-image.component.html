@@ -1,0 +1,18 @@
+<div class="card">
+
+    <div class="class-header">
+        <h4>Uplaod Image</h4>
+    </div>
+    
+    <div class="card-body">
+        <div class="form-group">
+            <label for="">Select Image</label>
+            <input (change)="onImageSelect($event)" type="file" class="form-control">
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <button (click)="onUplaodImage()" class="btn btn-success">Upload</button>
+        <a routerLink="/product-list" class="btn btn-danger" style="margin-left:10px ;">Cancel</a>
+    </div>
+</div>

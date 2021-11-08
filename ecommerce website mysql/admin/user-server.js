@@ -2,13 +2,17 @@ const express = require('express')
 const morgan = require('morgan')
 const jwt = require('jsonwebtoken')
 const config = require('./config')
+const cors = require('cors')
+
 const swaggerJSDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 
 const userRouter = require('./user/routes/user') 
 const orderRouter = require('./user/routes/order')
+const productRouter = require('./user/routes/product')
 
 const app = express()
+app.use(cors('*'))
 app.use(express.json())
 app.use(morgan('combined'))
 
@@ -41,6 +45,7 @@ function getUserId(request,response,next){
     request.url.startsWith('/user/activate')||
     request.url == '/'||
     request.url == '/favicon.ico'||
+    request.url.startsWith('/product/image/')||
     request.url.startsWith('/user/forget-password')||
     request.url == '/logo.png'){
         //do not check for token
@@ -70,7 +75,8 @@ app.use(express.static('images/'))
 
 //default router
 app.use('/user',userRouter)
-app.use('/user',orderRouter)
+app.use('/order',orderRouter)
+app.use('/product',productRouter)
 
 //default route
 app.get('/',(request,response)=>{

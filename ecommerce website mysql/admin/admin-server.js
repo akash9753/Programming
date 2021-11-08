@@ -36,7 +36,7 @@ const swaggerOptions = {
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions)
 app.use('/api-docs' , swaggerUi.serve, swaggerUi.setup(swaggerSpec))
-app.use(cors())
+app.use(cors('*'))
 
 //add a middleware for getting the id from token
 function getAdminId(request,response,next){

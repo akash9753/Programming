@@ -107,7 +107,7 @@ router.post("/signin", (request, response) => {
   try {
     //console.log(urlMethod.urlMethod(request))
     const { email, password } = request.body;
-    const statement = `select userId, firstName, lastName, active from user 
+    const statement = `select userId, firstName, lastName, email, active from user 
     where email = '${email}' and password = '${crypto.SHA256(password)}'`;
     console.log(crypto.SHA256(password));
     db.query(statement, (error, users) => {
@@ -118,6 +118,7 @@ router.post("/signin", (request, response) => {
         response.send({ status: "error", error: "user does not exist" });
       } else {
         const user = users[0];
+        console.log(user)
         const active = user['active']
         console.log(active)
         if (user['active'] == 1) {
@@ -129,6 +130,7 @@ router.post("/signin", (request, response) => {
               firstName: user["firstName"],
               lastName: user["lastName"],
               token: token,
+              email:user["email"]
             })
           );
         } else {

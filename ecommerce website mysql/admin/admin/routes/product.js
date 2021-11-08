@@ -18,7 +18,53 @@ router.get('/image/:filename',(request,response)=>{
          response.send(file)
 })
 
-
+router.get('/details/:id', (request, response)=>{
+    const {id} = request.params
+    const statement = `select p.productId, p.title, p.description, p.image,
+    c.categoryId as categoryId, c.title as categoryTitle,
+    b.brandId as brandId, b.title as brandTitle,
+    p.price, p.image, p.isActive from product p
+    
+    inner join category c
+    on c.categoryId = p.category
+    
+    inner join brand b
+    on b.brandId = p.brand
+    
+    where p.productId = ${id}`
+    //where p.isActive = 1
+    db.query(statement,(error,data)=>{
+        if(error){
+           response.send(utils.createError(error))
+        }else{
+             //empty products collection
+        const products = []
+        //iterate over the collection and modify the structure
+        for (let index = 0; index < data.length; index++) {
+            const tempProduct = data[index]
+            const product = {
+                productId : tempProduct['productId'],
+                title : tempProduct['title'],
+                description : tempProduct['description'],
+                price : tempProduct['price'],
+                isActive: tempProduct['isActive'],
+                category :{
+                    categoryId:tempProduct['categoryId'],
+                    title:tempProduct['categoryTitle'],
+                },
+                brand :{
+                    brandId:tempProduct['brandId'],
+                    title:tempProduct['brandTitle'],
+                },
+                image:tempProduct['image'],
+            }
+            products.push(product)
+        }
+        console.log(products)
+        response.send(utils.createSuccess(products))
+        }
+    })
+})
 
 
 router.get('/getAllProduct', (request, response)=>{
@@ -43,7 +89,7 @@ router.get('/getAllProduct', (request, response)=>{
         for (let index = 0; index < data.length; index++) {
             const tempProduct = data[index]
             const product = {
-                id : tempProduct['productId'],
+                productId : tempProduct['productId'],
                 title : tempProduct['title'],
                 description : tempProduct['description'],
                 price : tempProduct['price'],
@@ -91,21 +137,27 @@ router.post('/create', (request, response)=>{
 /*----------------------------------------------*/
 
 //PUT
-router.put('/:id', (request, response)=>{
-    const {id} = request.params
+router.put('/:productId', (request, response)=>{
+    const {productId} = request.params
     const {title,description,category,brand,price} = request.body
-    const statement = `update product set title = '${title}',
-    description = '${description}',category = '${category}',brand = '${brand}',
-    price = '${price}' where productId = '${id}'`
+    // const {title,description,price} = request.body
+    const statement = `update product set 
+    title = '${title}',
+    description = '${description}',
+     category = '${category}',
+     brand = '${brand}',
+    price = '${price}' 
+    where productId = '${productId}'`
     db.query(statement,(error,data)=>{
         response.send(utils.createResult(error,data))
     })
+    
 })
 
-router.put('/update-status/:id/:isActive' , (request, response)=>{
-    const {id, isActive} = request.params
+router.put('/update-status/:productId/:isActive' , (request, response)=>{
+    const {productId, isActive} = request.params
     const statement = `update product set isActive = '${isActive}'
-    where productId = '${id}'`
+    where productId = '${productId}'`
     db.query(statement,(error,data)=>{
         response.send(utils.createResult(error,data))
     })
