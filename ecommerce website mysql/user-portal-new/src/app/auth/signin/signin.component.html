@@ -1,18 +1,21 @@
 <div class="container">
-    <div class="row" style="margin-top: 50px;">
+    <!-- background-image: linear-gradient(45deg,#843cf7,#38b8f2); -->
+    <div class="row" >
         <div class="col-md-4"></div>
-        <div class="col-md-4">
+        <div id="shadow" class="col-md-4" style="margin-top: 50px;" style=" border-radius: 5px; background-color: white; margin-top: 50px; height: 300px;">
+            <div style="font-size: 40px;" class="d-flex justify-content-center">Signin</div>
             <div class="form">
+                
                 <div class="form-group">
-                    <label for="Email">Email</label>
-                    <input [(ngModel)] = "email" type="email" class="form-control">
+                    <label style="margin-top: 10px;" for="Email">Email</label>
+                    <input [(ngModel)] = "email" type="email" class="form-control" placeholder="Enter your email">
                 </div>
                 <div class="form-group">
                     <label for="Password">Password</label>
-                    <input [(ngModel)] = "password" type="password" class="form-control">
+                    <input [(ngModel)] = "password" type="password" class="form-control" placeholder="Enter your password">
                 </div>
-                <button (click)="onSignin()" class="btn btn-success">Signin</button>
-                <a routerLink="/signup" class="btn btn-warning float-right">Signup</a>
+                <button (click)="onSignin()" class="btn btn-success ">Signin</button>
+                <a routerLink="/auth/signup" class="btn btn-warning float-right">Signup</a>
             </div>
         </div>
         <div class="col-md-4"></div>

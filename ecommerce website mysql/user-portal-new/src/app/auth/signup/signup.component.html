@@ -1,1 +1,114 @@
-<p>signup works!</p>
+
+<div  class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <!-- background-image: linear-gradient(45deg,#843cf7,#38b8f2);  -->
+        <div id="shadow" class="col-md-4" style="border-radius: 5px; background-color: white; margin-top: 50px;" >
+         <form #signUpForm="ngForm" (ngSubmit)="onSignUp(signUpForm);">
+             <div style="font-size: 40px;" class="d-flex justify-content-center">Signup</div>
+            
+             <div class="form-group" style="margin-top: 20px;">
+                <label for="">First Name</label>
+                <input  type="text" class="form-control" name = "firstName" placeholder="Enter your firstName" 
+                ngModel  #firstName = "ngModel" pattern="^[a-zA-Z ]{3,30}$" required >
+                <div class="error-msg" *ngIf="(firstName.touched || signUpForm.submitted) && firstName.errors?.['required']">
+                    firstName is Required!
+             </div>
+             <div class="error-msg" *ngIf="(firstName.touched || signUpForm.submitted) && firstName.errors?.['pattern']">
+                 Enter valid firstName
+           </div>
+           </div>     
+
+             <div class="form-group" style="margin-top: 20px;">
+                 <label for="">Last Name</label>
+                 <input  type="text" class="form-control" name = "lastName" placeholder="Enter your lastname" 
+                 ngModel  #lastName = "ngModel" pattern="^[a-zA-Z ]{3,30}$" required >
+                 <div class="error-msg" *ngIf="(lastName.touched || signUpForm.submitted) && lastName.errors?.['required']">
+                    lastname is Required!
+              </div>
+              <div class="error-msg" *ngIf="(lastName.touched || signUpForm.submitted) && lastName.errors?.['pattern']">
+                  Enter valid lastname
+            </div>
+             </div>
+             
+             <div>Gender</div>
+             <div class="form-group" style="margin-top: 20px" >
+                <input  type="radio"   value="male"  name = "gender" ngModel>
+                <label style="margin-left: 3px" class="form-check-level" for="check1">Male</label>
+                <input  type="radio" style="margin-left: 10px"  value="female"  name = "gender" ngModel>
+                <label style="margin-left: 3px" class="form-check-level" for="check1">Female</label>
+                
+            </div>
+
+            
+
+             <div class="form-group" style="margin-top: 20px;">
+                <label for="">Mobile No</label>
+                <input  type="tel" class="form-control" name = "mobile" ngModel  placeholder="Enter your mobile no" 
+                #mobile=ngModel pattern="^([0-9]{10,12})$" required>
+                <div class="error-msg" *ngIf="(mobile.touched || signUpForm.submitted) && mobile.errors?.['required']">
+                    Mobile No is Required!
+              </div>
+              <div class="error-msg" *ngIf="(mobile.touched || signUpForm.submitted) && mobile.errors?.['pattern']">
+                  Enter a valid mobile no
+            </div>
+                
+            </div>
+
+            <div class="form-group" style="margin-top: 20px;">
+                <label for="">Email</label>
+                <input  type="email" class="form-control" name = "email" placeholder="Enter your email" ngModel  
+                #email="ngModel"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                
+                <div class="error-msg" *ngIf="(email.touched || signUpForm.submitted) && email.errors?.['required']">
+                      Email Adress is Required!
+                </div>
+                <div class="error-msg" *ngIf="(email.touched || signUpForm.submitted) && email.errors?.['pattern']">
+                    Enter a valid Email Address
+              </div>
+
+            </div>
+            
+            <div class="form-group" style="margin-top: 20px;">
+                <label for="">Password</label>
+                <input  type="password" class="form-control" name = "password" placeholder="Enter your password"
+                 ngModel #password="ngModel" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,16}$" required >
+
+                   <div class="error-msg" *ngIf="(password.touched || signUpForm.submitted) && password.errors?.['required']">
+                    Password is Required!
+                   </div>
+              <div class="error-msg" *ngIf="(password.touched || signUpForm.submitted) && password.errors?.['pattern']">
+                  Password length must be 8-16 character and contain numbers, letters and special characters
+               </div>
+                
+            </div>
+             
+            <!-- <div>Favorite course</div>
+            <div class="form-group form-check" style="margin-top: 20px;">
+             <input type="checkbox" class="form-check-input" name="" id="mean">
+             <label style="margin-left: 1px" class="form-check-level" for="mean">MEAN</label>
+             
+             <input style="margin-left: 10px" type="checkbox" class="form-check-input" name="" id="mean">
+             <label style="margin-left: 25px" class="form-check-level" for="mean">MERN</label>
+             
+             <input style="margin-left: 16px" type="checkbox" class="form-check-input" name="" id="mean">
+             <label style="margin-left: 32px" class="form-check-level" for="mean">PYTHONE</label>
+            </div> -->
+
+             <div class="form-group" style="margin-top: 20px;">
+             <button type="submit" class="btn btn-success" [disabled]="!signUpForm.valid">Signup</button>
+             <a routerLink="/auth/signin" class="btn btn-warning float-right" style="margin-left: 20px">Signin</a>
+             </div>
+
+             
+             
+            </form>
+         </div>
+        
+
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+ 
+ 

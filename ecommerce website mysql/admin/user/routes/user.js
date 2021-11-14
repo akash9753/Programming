@@ -61,7 +61,7 @@ router.get("/forget-password/:email", (request, response) => {
 //                POST
 //------------------------------------
 router.post("/signup", (request, response) => {
-  const { firstName, lastName, email, password } = request.body;
+  const { firstName, lastName, email, password, mobile } = request.body;
   console.log(request.body);
   const activationToken = uuid.v4();
   const activationLink = `http://localhost:4000/user/activate/${activationToken}`;
@@ -78,10 +78,8 @@ router.post("/signup", (request, response) => {
   console.log(`activation link = ${activationLink}`);
   console.log(`body = ${body}`);
 
-  const statement = `insert into user (firstName, lastName, email, password,activationToken) values 
-('${firstName}','${lastName}','${email}','${crypto.SHA256(
-    password
-  )}','${activationToken}')`;
+  const statement = `insert into user (firstName, lastName, email, password,mobile, activationToken) values 
+('${firstName}','${lastName}','${email}','${crypto.SHA256(password)}','${mobile}','${activationToken}')`;
   console.log(statement);
   db.query(statement, (error, data) => {
     console.log(data);
@@ -91,7 +89,7 @@ router.post("/signup", (request, response) => {
       email,
       "welcome to jabalpurwala.com",
       body,
-      (error, info) => {
+      (error1, info) => {
         console.log(`Error for mail :  ${error}`);
         console.log(info);
         response.send(utils.createResult(error, data));

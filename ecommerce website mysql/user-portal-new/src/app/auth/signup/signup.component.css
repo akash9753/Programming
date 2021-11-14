@@ -1,0 +1,11 @@
+input.ng-touched.ng-invalid{
+    border: 3px solid red
+}
+
+#shadow{
+    box-shadow: 0 1px 5px 0;
+}
+.error-msg{
+    font-size: 13px;
+    color: red;
+}

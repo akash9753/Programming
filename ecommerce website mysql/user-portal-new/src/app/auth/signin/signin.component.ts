@@ -27,7 +27,9 @@ export class SigninComponent implements OnInit {
   onSignin(){
     if(this.email.length == 0){
        this.toastr.error('please enter email')
-    }else if(this.password.length == 0){
+    }else if(!this.email.match("[a-z0-9._%+-]+@([a-z0-9.-]{5})+\.[a-z]{2,4}$")){
+      this.toastr.error('please enter valid email')
+       }else if(this.password.length == 0){
        this.toastr.error('please enter password')
     }else{
       this.authService
@@ -45,7 +47,7 @@ export class SigninComponent implements OnInit {
       this.toastr.success(`Welcome ${data['firstName']} to Top 10 Jabalpur`)
       this.router.navigate(['/home'])
       }else{
-        alert('invalid email or password')
+        this.toastr.error(response ['error'])
       }
     })
     }
